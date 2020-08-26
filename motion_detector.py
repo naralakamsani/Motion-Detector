@@ -1,10 +1,12 @@
+# Make imports
 import cv2
 from datetime import datetime
-
 import pandas
 
+#Define first frame before recording
 first_frame = None
 
+#store data of recording to video
 video = cv2.VideoCapture(0)
 
 status_list = [None, None]
