@@ -2,6 +2,7 @@ from bokeh.models import HoverTool, ColumnDataSource
 from bokeh.plotting import figure, show, output_file
 from motion_detector import df
 
+# add the dates and time in better format onto df to be displayed by the hovertool later
 df["Start_string"]=df["Start"].dt.strftime("%Y-%m-%d-%H:%M:%S")
 df["End_string"]=df["End"].dt.strftime("%Y-%m-%d-%H:%M:%S")
 
@@ -16,5 +17,6 @@ f.add_tools(hover)
 
 p = f.quad(left="Start", right="End", bottom=0, top=1, color="green", source=cds)
 
+#Convert the plot to html
 output_file("motion_graph.html")
 show(f)
