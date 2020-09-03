@@ -12,7 +12,7 @@ f = figure(x_axis_type='datetime', height=150, width=800, title="Motion Graph")
 f.yaxis.minor_tick_line_color = None
 f.ygrid[0].ticker.desired_num_ticks = 1
 
-#Add a hover tool that displays 
+#Add a hover tool that displays date and time
 hover = HoverTool(tooltips=[("Start","@Start_string"),("End","@End_string")])
 f.add_tools(hover)
 
