@@ -21,7 +21,8 @@ while True:
     if first_frame is None:
         first_frame = gray_frame
         continue
-
+        
+    #Find the difference between current frame and first frame
     delta_frame = cv2.absdiff(first_frame, gray_frame)
 
     thresh_frame = cv2.threshold(delta_frame, 30, 255, cv2.THRESH_BINARY)[1]
@@ -56,7 +57,7 @@ while True:
         if status_list == 1:
             times.append(datetime.now)
         break
-
+#print the times
 print(times)
 
 df = pandas.DataFrame(columns=["Start", "End"])
