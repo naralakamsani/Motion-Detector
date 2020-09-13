@@ -46,7 +46,8 @@ while True:
         times.append(datetime.now())
     if status_list[-1] == 0 and status_list[-2] == 1:
         times.append(datetime.now())
-
+    
+    #display the frames after each filter is applied
     cv2.imshow("gray", gray_frame)
     cv2.imshow("delta", delta_frame)
     cv2.imshow("thresh", thresh_frame)
