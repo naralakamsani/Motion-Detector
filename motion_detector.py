@@ -27,17 +27,20 @@ while True:
     delta_frame = cv2.absdiff(first_frame, gray_frame)
 
     thresh_frame = cv2.threshold(delta_frame, 30, 255, cv2.THRESH_BINARY)[1]
-    thresh_frame = cv2.dilate(thresh_frame, None, iterations=1)
+    thresh_frame = cv2.dilate(thresh_fram, None, iterations=1)
 
     #Find the contours or objects not in the first frame
     (cnts, _) = cv2.findContours(thresh_frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    status = 0
+    status = 0 //#set status to 0
+    
+    #find contours or objects not in first frame that are relatively large
     for countour in cnts:
         if cv2.contourArea(countour) < 1000:
             continue
-        status = 1
-
+        status = 1 //#set status to 1 if relatively large contours is found
+        
+        #box all of the relatively large contours found when displaying the frames
         (x, y, w, h) = cv2.boundingRect(countour)
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 3)
 
@@ -62,11 +65,13 @@ while True:
 #print the times
 print(times)
 
+
 df = pandas.DataFrame(columns=["Start", "End"])
 for i in range(0, len(times), 2):
     df = df.append({"Start": times[i], "End": times[i + 1]}, ignore_index=True)
 
     df.to_csv("Time of motion.csv")
-
+    
+#stop recording and destroy the windows showing the video
 video.release()
 cv2.destroyAllWindows()
